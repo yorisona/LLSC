@@ -9,5 +9,5 @@ var pool = mysql.createPool({
   port:3306,
   connectionLimit:20
 });
-//3:导出连接池对象
+//3:导出连接池对象2
 module.exports = pool;
