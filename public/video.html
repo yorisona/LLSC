@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>琉璃社区</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/video.css">
+</head>
+<body>
+    <header>
+        <iframe class="header_nav" src="./header.html" frameborder="0" scrolling="no">
+        </iframe>
+        <section>
+            <div class="main">
+                <div class="wrap">
+                    <div class="warp-left">
+                        <div class="player-wrap">
+                            <video src="./video-player/v1.mp4" controls="controls" muted></video>
+                        </div>
+                        <div class="video-dan">                         
+                            <div id="Barrage" class="barrage">
+                                <div class="show"></div>                                                         
+                            </div>                            
+                                <div class="barrage" style="height:auto;">
+                                <input type="text" class="barrage-txt" value="在这输入弹幕内容" placeholder="请输入弹幕内容">
+                                <input type="button" value="发布评论" class="barrage-send">
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h1 class="video-title" title="遇到喜欢女装的大佬应该以何种表情面对？">
+                                <span>遇到喜欢女装的大佬应该以何种表情面对？</span>
+                            </h1>
+                            <div class="video-data">
+                                <span title="总播放数46832" class="view">
+                                        4.7万播放  &nbsp; &nbsp;
+                                </span>
+                                <span title="总弹幕数96" class="view">
+                                        96弹幕   &nbsp; &nbsp;
+                                </span>
+                                <time>2018-12-18 20:26:00</time>
+                                <span class="video-path">
+                                    <a href="#">动画</a>
+                                    <i>></i>
+                                    <a href="#">短片·手书·配音</a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="video-zang"></div>
+                        <div class="video-zuozhe">
+                            <div class="zuo-icon">
+                                <a href="#">
+                                    <img src="./image/sc01.gif" alt="" width="40px" height="40px">
+                                </a>
+                            </div>
+                            <div class="zuozhe-info">
+                                <div class="zuo-name">
+                                    <a href="#" class="username">
+                                        Lex
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="zuo-btn">
+                                    <a class="zuo-btn1" href="#">充电</a>
+                                    <a class="zuo-btn2" href="#">十 &nbsp;关注</a>
+                            </div>
+                        </div>
+                        <i class="clr"></i>
+                        <div class="video-abstract">
+                            <span  class="video-abstract-icon">未经作者授权，禁止转载</span>
+                            <div class="video-abstract-info">
+                                    这个时候是不是只要微笑就好了？
+                                    配音：小连杀、叮当、原子。
+                                    编剧：李喆
+                                    导演：成凡之
+                                    音乐：爱丽丝工坊
+                            </div>
+                        </div>
+                        <div class="label-warp">
+                            <ul class="tag-area">                                
+                                <li><a href="#">短片</a></li>
+                                <li><a href="#">女装</a></li>
+                                <li><a href="#">动画短片</a></li>
+                                <li><a href="#">嘤嘤怪</a></li>
+                            </ul>
+                        </div>
+                        <div class="left-banner">
+                            <div class="left-banner-bn"></div>
+                        </div>
+                    </div>
+                    <div class="warp-right"></div>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+         $(function(){		
+		$(".barrage-send").click(function(){
+		   var text=$(".barrage-txt").val();
+		   var div="<div>"+text+"</div>";
+		   var width = $(".barrage").width();
+		   var height = Math.floor(Math.random()*$(".barrage").height());
+		   $(".show").append(div);
+		   var length = $('.show div').length;
+		   $('.show div').eq(length-1).css({'top':height,'width':$('.show div').eq(length-1).width()});
+		   $('.show div').eq(length-1).animate({right:width},6000);
+		})
+	});
+    </script>
+</body>
+</html>

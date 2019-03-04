@@ -1,0 +1,100 @@
+<!DOCTYPE html >
+<html>
+	<head>
+		<title> Boye </title>
+		<meta name="author" content="Boye" />  
+		<meta name="keywords" content="" />  
+		<meta name="description" content="" />
+		<meta charset="utf-8"/>
+		<style type="text/css">
+		</style>
+    </head>
+	
+  <body>
+		<div>
+			<div>
+				昵称：<input type="text" id="user_name" />
+			</div>
+			<div>
+				用户名：<input type="text" id="uname" name="uname" onblur="checkUname()" />
+				<span id="unameMsg"></span>
+			</div>
+			<div>
+				密码：<input type="password" id="upwd" />
+			</div>
+			<div>
+				请确认密码：<input type="password" id="upwd2" onblur="checkUpwd()" />
+				<span id="upwdMsg"></span>
+			</div>
+			<div>
+				邮箱：<input type="text" id="email" />
+			</div>
+			<div>
+				<input type="button" value="注册" onclick="zhuce()"/>
+				<h3 id="d0"></h3>
+			</div>
+		</div>
+	</body>
+	<script>
+		//验证用户名
+		var isRegister=''
+		function checkUname(){
+			var xhr=new XMLHttpRequest()
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4 && xhr.status==200){
+					var result=xhr.responseText
+					console.log(result)
+					if(result==1){
+						unameMsg.innerHTML=('可以注册')
+						isRegister=true
+					}else if(result==0){
+						unameMsg.innerHTML=('用户名已存在')
+						isRegister=false
+					}else{
+						unameMsg.innerHTML=('不能为空')
+						isRegister=false
+					}					
+				}
+			}
+			xhr.open("get","/user/checkuname?uname="+uname.value,true)
+			xhr.send(null)
+		}
+		//验证两次密码
+		function checkUpwd(){
+			if(upwd.value!==upwd2.value){
+				upwdMsg.innerHTML=("两次输入不一致")
+				isRegister=false
+			}else{
+				upwdMsg.innerHTML=("")
+				isRegister=true
+			}
+		}
+		//注册
+		function zhuce(){
+			if(!isRegister){
+				alert('用户名不能注册')
+				return
+			}
+			if(upwd.value!==upwd2.value){
+				alert('两次密码不一致')
+				d3.innerHTML=('两次密码不一致')
+				return
+			}
+			var xhr=new XMLHttpRequest()
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4 && xhr.status==200){
+					var result=xhr.responseText
+					if(result){
+						alert('注册成功')
+						location.href='http://127.0.0.1:3000/login.html'
+					}
+					d0.innerHTML=result
+				}
+			}
+			xhr.open("post","/user/register",true)
+			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+			formdata="user_name="+user_name.value+"&uname="+uname.value+"&upwd="+upwd.value+"&email="+email.value
+			xhr.send(formdata)
+		}
+	</script>
+</html>
